@@ -1,22 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import {Http} from '@angular/http';
+
+import { PostService } from '../post.service';
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
-export class PostComponent {
+export class PostComponent implements OnInit {
 
   post: any[];
-  url="https://jsonplaceholder.typicode.com/posts";
-  constructor(private http:Http) { 
-    http.get(this.url).
+ 
+  constructor(private service:PostService) { 
+}
+
+  ngOnInit()
+  {
+    this.service.getPosts().
     subscribe(response =>{
       console.log((response).json());
       this.post=response.json();
     })
-
-    
 
   }
 
@@ -24,7 +27,7 @@ export class PostComponent {
     {
       let post={title : title.value};
       title.value=" ";
-      this.http.post(this.url,JSON.stringify(post)).subscribe(response =>{
+      this.service.createPosts(post).subscribe(response =>{
         post['id']=response.json().id;
       
         this.post.splice(0,0,post);
@@ -35,7 +38,7 @@ export class PostComponent {
 
     update(post)
     {
-      this.http.put(this.url +'/'+post.id,JSON.stringify(post)).subscribe(response =>
+      this.service.updatePosts(post).subscribe(response =>
         {
           console.log(response.json());
         });
@@ -43,7 +46,7 @@ export class PostComponent {
     
     deletePost(post)
     {
-      this.http.delete(this.url+'/'+post.id)
+      this.service.deletePosts(post.id)
       .subscribe(response =>{
         let index=this.post.indexOf(post);
         this.post.splice(index,1);
