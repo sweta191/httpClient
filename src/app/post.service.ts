@@ -14,12 +14,12 @@ export class PostService {
     let opts = new RequestOptions();
     opts.headers = headers;
     
-    return this.http.get(this.url,opts);
+    return this.http.get("http://dummy.restapiexample.com/api/v1/employees",opts);
   }
   
   createPosts(post)
   {
-   return  this.http.post(this.url,JSON.stringify(post))
+   return  this.http.post("http://dummy.restapiexample.com/api/v1/create",JSON.stringify(post))
   }
 
   updatePosts(post)

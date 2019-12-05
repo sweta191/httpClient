@@ -4,6 +4,7 @@ import {HttpModule} from '@angular/http'
 import { AppComponent } from './app.component';
 import { PostComponent } from './post/post.component';
 import { PostService } from './post.service';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { PostService } from './post.service';
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    ReactiveFormsModule
   ],
   providers: [
     PostService

@@ -1,10 +1,60 @@
-<input (keyUp.enter)="createPost(title)" #title type="text" class="form-control">
-<ul class="list-group">
-  <li 
-  *ngFor="let post of post" class="list-group-item">
-  {{post.title}}
-  <button class="btn btn-default" (click)="update(post)">update</button>
-  <button class="btn btn-default" (click)="deletePost(post)">Delete</button>
-  </li>
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container-fluid" >
+    <form [formGroup]="registrationForm" (ngSubmit)="createPost()">
+      <div class="form-group">
+        <label>Id</label>
+        <input  formControlName="Id" type="text" class="form-control">
+        <div class="alert alert-danger" *ngIf="Id.touched && !Id.valid" >
+            <div *ngIf="Id.errors?.required">ID is required</div>
+            <div *ngIf="Id.errors?.minlength">minimum lenth is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+          <label>Employee Name</label>
+          <input formControlName="emp_name"  type="text" class="form-control">
+          <div class="alert alert-danger" *ngIf="Emp_name.touched && !Emp_name.valid" >
+              <div *ngIf="Emp_name.errors?.required">Employee name  is required</div>
+          </div>
+      </div>
+      <div class="form-group">
+          <label>Employee salary</label>
+          <input formControlName="emp_salary" type="number" class="form-control">
+          <div class="alert alert-danger" *ngIf="Emp_salary.touched && !Emp_salary.valid" >
+              <div *ngIf="Emp_salary.errors?.required">salary is required</div>
+              
+          </div>
+      </div>
+      <div class="form-group">
+          <label>Employee Age</label>
+          <input formControlName="emp_age" type="number" class="form-control">
+          <div class="alert alert-danger" *ngIf="Emp_age.touched && !Emp_age.valid" >
+            <div *ngIf="Password.errors?.required">Employee age is required</div>
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary" >Register</button>
+      <!-- <button (click)="loadapi()" class="btn btn-primary">load the data</button> -->
+    </form>
+    {{registrationForm.value | json}}
+  </div>
+ 
 
-</ul>
+<div class="panel-body">
+  <table class="table">
+          <tr>
+              <th>Id</th>
+              <th>Employee Name</th>
+              <th>Employee salary</th>
+              <th>Employee age</th>
+          </tr>
+          <tr *ngFor="let post of post">
+              <td>{{post.id}}</td>
+              <td>{{post.employee_name}}</td>
+              <td>{{post.employee_salary}}</td>
+              <td>{{post.employee_age}}</td>
+              <button class="btn btn-default" (click)="update(post)">update</button>
+              <button class="btn btn-default" (click)="deletePost(post)">Delete</button>
+          </tr>
+      </table>
+
+</div>
