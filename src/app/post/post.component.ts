@@ -42,23 +42,7 @@ get Id()
 
 
   });
-  
 
-  loadapi()
-  {
-    console.log("I am clicked");
-    this.registrationForm.setValue({
-      userName:'sweta',
-      password:'hkfhkd',
-      confirmPassword:'mbnkdnv',
-      address: {
-        city:'kolkata',
-        state:'West Bengal',
-        postalCode:'700091'
-      }
-        
-    });
-  }
 
   login()
   {
