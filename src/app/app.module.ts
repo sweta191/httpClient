@@ -5,16 +5,26 @@ import { AppComponent } from './app.component';
 import { PostComponent } from './post/post.component';
 import { PostService } from './post.service';
 import {ReactiveFormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
+import { FormComponent } from './form/form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PostComponent
+    PostComponent,
+    FormComponent
+
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule.forRoot([
+      {path:'',component:FormComponent},
+      {path:'create',component:PostComponent},
+
+
+    ])
   ],
   providers: [
     PostService

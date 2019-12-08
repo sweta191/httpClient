@@ -24,12 +24,12 @@ export class PostService {
 
   updatePosts(post)
   {
-    return this.http.put(this.url +'/'+post.id,JSON.stringify(post))
+    return this.http.put("http://dummy.restapiexample.com/api/v1/update/21",JSON.stringify(post))
   }
 
-  deletePosts(id)
-  {
-    return this.http.delete(this.url+'/'+id)
-  }
+   deletePosts(id)
+   {
+     return this.http.delete("http://dummy.restapiexample.com/api/v1/delete/2")
+   }
 
 }

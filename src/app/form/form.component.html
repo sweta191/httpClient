@@ -1,0 +1,46 @@
+<div class="container-fluid" >
+    <form [formGroup]="registrationForm" (ngSubmit)="login()">
+      <div class="form-group">
+        <label>Id</label>
+        <input  formControlName="id" type="text" class="form-control">
+        <div class="alert alert-danger" *ngIf="Id.touched && !Id.valid" >
+            <div *ngIf="Id.errors?.required">ID is required</div>
+            <div *ngIf="Id.errors?.minlength">minimum lenth is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+          <label>Employee Name</label>
+          <input formControlName="name"  type="text" class="form-control">
+          <div class="alert alert-danger" *ngIf="Emp_name.touched && !Emp_name.valid" >
+              <div *ngIf="Emp_name.errors?.required">Employee name  is required</div>
+          </div>
+      </div>
+      <div class="form-group">
+          <label>Employee salary</label>
+          <input formControlName="salary" type="number" class="form-control">
+          <div class="alert alert-danger" *ngIf="Emp_salary.touched && !Emp_salary.valid" >
+              <div *ngIf="Emp_salary.errors?.required">salary is required</div>
+              
+          </div>
+      </div>
+      <div class="form-group">
+          <label>Employee Age</label>
+          <input formControlName="age" type="number" class="form-control">
+          <div class="alert alert-danger" *ngIf="Emp_age.touched && !Emp_age.valid" >
+            <div *ngIf="Password.errors?.required">Employee age is required</div>
+        </div>
+      </div>
+      <div *ngIf="!registrationForm.valid && registrationForm.errors" class="alert alert-danger">
+          <div *ngIf="Id.errors?.required">Id is required</div>
+          <div *ngIf="Emp_name.errors?.required">Email is required</div>
+          <div *ngIf="Emp_salary.errors?.required">Phone no  is required</div>
+  
+      </div>
+
+  
+      <button type="submit" class="btn btn-primary">Register</button>
+      
+      <!-- <button (click)="loadapi()" class="btn btn-primary">load the data</button> -->
+    </form>
+    {{registrationForm.value | json}}
+  </div>
